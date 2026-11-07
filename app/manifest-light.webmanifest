@@ -1,0 +1,33 @@
+{
+  "id": "./",
+  "name": "星子拼豆",
+  "short_name": "星子拼豆",
+  "description": "一间放在手机里的拼豆小工作室：照片变成图纸，颜色、用量和路线都在手边。完全本地，不需要账号。",
+  "lang": "zh-CN",
+  "theme_color": "#f5f6f8",
+  "background_color": "#f5f6f8",
+  "display": "standalone",
+  "start_url": ".",
+  "scope": "./",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

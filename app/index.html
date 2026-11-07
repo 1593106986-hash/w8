@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="description" content="星子拼豆，本地拼豆辅助工作室。照片转像素、科学路线与逐豆制作。" />
+    <link rel="icon" href="./icon.svg" />
+    <link rel="apple-touch-icon" href="./icon-192.png" />
+    <title>星子拼豆 · 拼豆工作室</title>
+    <style>/* The only source of application colors; loaded before first paint. */
+:root {
+  font-family:
+    "PingFang SC",
+    "Microsoft YaHei",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: var(--text-primary);
+  background: var(--background);
+  font-synthesis: none;
+  color-scheme: light;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --background: #f5f6f8;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-soft: #f9fafb;
+  --overlay: rgba(255, 255, 255, 0.96);
+  --border: #75818d;
+  --divider: #eceef1;
+  --text-primary: #29323b;
+  --text-secondary: #68737f;
+  --text-disabled: #9aa4af;
+  --accent: #ad4938;
+  --accent-hover: #983e30;
+  --accent-soft: #fcf0ec;
+  --success: #3d754f;
+  --warning: #8c5c17;
+  --danger: #b14e42;
+  --shadow: 0 12px 35px rgba(36, 44, 59, 0.12);
+  --scrim: rgba(18, 24, 32, 0.48);
+  --canvas-bg: #f7f8fa;
+  --grid-line: rgba(93, 105, 118, 0.2);
+  --grid-line-major: rgba(93, 105, 118, 0.3);
+  --grid-margin: rgba(173, 73, 56, 0.07);
+  --cell-empty: #f7f8fa;
+  --cell-selected: rgba(65, 141, 175, 0.28);
+  --cell-done: rgba(246, 248, 250, 0.78);
+  --cell-next: rgba(199, 96, 76, 0.2);
+  --highlight: rgba(199, 96, 76, 0.2);
+  --text-on-accent: #ffffff;
+  --bead-highlight: rgba(255, 255, 255, 0.4);
+  --bead-shadow: rgba(20, 28, 36, 0.08);
+  --focus-ring: var(--accent);
+  --scrim-border: rgba(255, 255, 255, 0.6);
+  --skeleton: #e9edf1;
+  --checker-a: #e6e9ed;
+  --checker-b: #f7f8fa;
+
+  --success-soft: #eaf0ec;
+  --success-solid: #42674c;
+  --text-on-success: #ffffff;
+  --danger-soft: #fcf0ee;
+  --selection-stroke: #246e8a;
+  --selection-draft: rgba(65, 141, 175, 0.16);
+  --cell-muted: rgba(246, 248, 250, 0.88);
+  --data-label-light: #ffffff;
+  --data-label-dark: #101418;
+  --material-shadow: rgba(0, 0, 0, 0.12);
+  --illustration-1: #dcaca2;
+  --illustration-2: #d3a7a2;
+  --illustration-3: #b48e95;
+  --illustration-4: #729ca1;
+  --illustration-5: #85aaa9;
+  --illustration-6: #98b8b6;
+  /* Compatibility aliases for existing page styles. */
+  --bg: var(--background);
+  --canvas: var(--canvas-bg);
+  --text: var(--text-primary);
+  --muted: var(--text-secondary);
+  --subtle: var(--text-secondary);
+  --line: var(--border);
+  --sidebar: 216px;
+  --header: 70px;
+  --radius: 14px;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  /* Night is drawn from the home page: warm plum-charcoal, dusty rose ink. */
+  --background: #171315;
+  --surface: #211b1e;
+  --surface-elevated: #2a2225;
+  --surface-soft: #241d20;
+  --overlay: rgba(33, 27, 30, 0.97);
+  --border: #5e4d51;
+  --divider: #34292d;
+  --text-primary: #f3eae7;
+  --text-secondary: #b9a9a6;
+  --text-disabled: #8a7a76;
+  --accent: #e8b3bd;
+  --accent-hover: #f2c4cc;
+  --accent-soft: #39292e;
+  --success: #a7c9ae;
+  --warning: #e3bd82;
+  --danger: #e79086;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --scrim: rgba(12, 8, 10, 0.66);
+  --canvas-bg: #1b1619;
+  --grid-line: rgba(214, 180, 184, 0.16);
+  --grid-line-major: rgba(214, 180, 184, 0.26);
+  --grid-margin: rgba(232, 179, 189, 0.06);
+  --cell-empty: #1b1619;
+  --cell-selected: rgba(224, 178, 124, 0.26);
+  --cell-done: rgba(23, 19, 21, 0.62);
+  --cell-next: rgba(224, 138, 128, 0.22);
+  --highlight: rgba(224, 138, 128, 0.22);
+  --text-on-accent: #2b1a1f;
+  --bead-highlight: rgba(255, 255, 255, 0.2);
+  --bead-shadow: rgba(0, 0, 0, 0.45);
+  --focus-ring: #f0c0c8;
+  --scrim-border: rgba(255, 255, 255, 0.16);
+  --skeleton: #2c2327;
+  --checker-a: #2b2226;
+  --checker-b: #1b1619;
+  --bg: var(--background);
+  --canvas: var(--canvas-bg);
+  --text: var(--text-primary);
+  --muted: var(--text-secondary);
+  --subtle: var(--text-secondary);
+  --line: var(--border);
+
+  --success-soft: #26332b;
+  --success-solid: #a7c9ae;
+  --text-on-success: #1b221c;
+  --danger-soft: #3b2728;
+  --selection-stroke: #e0b27c;
+  --selection-draft: rgba(224, 178, 124, 0.16);
+  --cell-muted: rgba(23, 19, 21, 0.82);
+  --data-label-light: #ffffff;
+  --data-label-dark: #141011;
+  --material-shadow: rgba(0, 0, 0, 0.45);
+  --illustration-1: #b08a84;
+  --illustration-2: #a17f7a;
+  --illustration-3: #9a7b84;
+  --illustration-4: #7d6a79;
+  --illustration-5: #8d757c;
+  --illustration-6: #a98b90;
+}
+</style>
+    <style>
+      html, body, #root { min-height: 100%; margin: 0; }
+      body { background: inherit; }
+    </style>
+    <script>
+      (() => {
+        // Day and night are the only two states. A device's system preference
+        // seeds the very first visit; after that the stored choice wins.
+        let preference = 'light';
+        try {
+          const saved = localStorage.getItem('bead-theme');
+          if (saved === 'dark' || saved === 'light') preference = saved;
+          else {
+            preference = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            localStorage.setItem('bead-theme', preference);
+          }
+        } catch {
+          preference = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        const dark = preference === 'dark';
+        const root = document.documentElement;
+        root.dataset.theme = dark ? 'dark' : 'light';
+        root.style.colorScheme = root.dataset.theme;
+        document.querySelector('meta[name="theme-color"]').content = getComputedStyle(root).getPropertyValue('--background').trim();
+        document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').content = dark ? 'black-translucent' : 'default';
+        const manifest = document.createElement('link');
+        manifest.rel = 'manifest';
+        manifest.href = './manifest-' + root.dataset.theme + '.webmanifest';
+        document.head.appendChild(manifest);
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-C3W16nnz.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CtnnDb44.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
